@@ -6,6 +6,18 @@ body{
     background-color: wheat;
     color: black;
 }
+.center{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    position: absolute;
+    top: -100vh;
+    z-index: 20;
+}
 .main-container{
     display: flex;
     align-items: center;
@@ -76,4 +88,9 @@ table{
 th,td{
     font-size: 25px;
     padding: 50px;
+}
+@media (max-width:800px){
+    .center{
+        top: 0;
+    }
 }
