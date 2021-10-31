@@ -2,6 +2,11 @@ let txtarea = document.querySelector('textarea');
 let showTime = document.getElementById('showTime');
 let textBox = document.querySelector('h2')
 let starttime,endtime,b=0,marks=0;
+let spd=document.getElementById('speed');
+let scr=document.getElementById('score');
+let bcon=document.getElementById('bcontainer');
+let time=document.getElementById('time');
+txtarea.focus();
 let text = [
     "It's urgent, but we don't have time in the next two years to test it, but we must prioritize it. At least we don't need to obfuscate it. You must rethink the whole process. We will give you a slice of pizza if you finish the code until yesterday. Make it pop remember, the entirety is equal or better.  We must build a queue system to ensure it gets the data from our API so this will result in a delay. How does this indicator should look? Also please answer to question from the next mail. Kind reminder. Please inform us where we are on this. After the release, we will need to test it individually. This was the last time when you are allowed to promote something urgent in the production when you was asked for.Dropping the production database is the best coffee in the morning. Also, if you don't have a backup it will work well. We don’t want a backup, it in no way is going down! We must start to do it in this way. Did you develop on production code using the UAT Database?  This is the method that we choose. ",
 
@@ -26,19 +31,30 @@ function teststart(){
 txtarea.addEventListener("keypress",(event) =>{
     if(b==0){
         teststart();
-        b=1;}
-    if(event.key=='Enter'){
+        b=1;
+    }
+
+    if(event.key=='Enter')
+    {
         let checktest = text[no].split(' ');
-            endtime = (((new Date()).getTime())-starttime)/1000;
-            txtarea.disabled=true;
-            let typedtest = txtarea.value.split(' ');
-            for(i=0;i<checktest.length;i++){
-                if(checktest[i]==typedtest[i]){
+
+        endtime = (((new Date()).getTime())-starttime)/1000;
+
+        txtarea.disabled=true;
+
+        let typedtest = txtarea.value.split(' ');
+        for(i=0;i<typedtest.length;i++){
+            if(checktest[i]==typedtest[i]){
                     marks++;
-                }
-            }
-            let speed = Math.floor((marks/5)/(endtime/60));
-            let error= checktest-marks;
-            document.write('score '+ marks+'<br>Net speed '+speed+' words per minute<br>errors '+error);
-        }
+        }}
+        
+        let speed = Math.round((typedtest.length/endtime)*60);
+
+        let error= checktest-marks;
+
+        spd.innerHTML=`${speed} words per minute`;
+        scr.innerHTML=marks;
+        time.innerHTML=endtime+" sec";
+        bcon.style.transform="none";
+    }
 })
