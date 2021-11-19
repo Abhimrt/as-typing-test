@@ -33,27 +33,27 @@ txtarea.addEventListener("keypress",(event) =>{
         teststart();
         b=1;
     }
-
+    
     if(event.key=='Enter')
     {
         let checktest = text[no].split(' ');
-
+        
         endtime = (((new Date()).getTime())-starttime)/1000;
-
+        
         txtarea.disabled=true;
-
+        
         let typedtest = txtarea.value.split(' ');
         for(i=0;i<typedtest.length;i++){
             if(checktest[i]==typedtest[i]){
-                    marks++;
-        }}
-        
-        let speed = Math.round((typedtest.length/endtime)*60);
-
-        let error= checktest-marks;
-
+                marks++;
+            }
+            txtarea="";
+        }
+        let speed=0;
+        speed = Math.round((marks/endtime)*60);
+        let error = typedtest.length-marks;        
         spd.innerHTML=`${speed} words per minute`;
-        scr.innerHTML=marks;
+        scr.innerHTML=`${marks}   Error:  ${error}`;
         time.innerHTML=endtime+" sec";
         bcon.style.transform="none";
     }
